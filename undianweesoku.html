@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undian Hadiah — Peresmian WEE SOKU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B3B2E;
+    --ink-deep:#062821;
+    --gold:#C9A227;
+    --gold-light:#E8CE7A;
+    --cream:#F6F1E4;
+    --ruby:#8A2A3B;
+    --line: rgba(246,241,228,0.16);
+    --radius: 18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #124A3A 0%, transparent 55%),
+      radial-gradient(1000px 700px at 110% 10%, #0F4336 0%, transparent 50%),
+      linear-gradient(180deg, var(--ink-deep), var(--ink) 40%, var(--ink-deep));
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    padding: 40px 20px 60px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(201,162,39,0.05) 0 1px, transparent 1px 90px),
+      repeating-linear-gradient(0deg, rgba(201,162,39,0.05) 0 1px, transparent 1px 90px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+
+  header{text-align:center;margin-bottom:38px;}
+  .eyebrow{
+    font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
+    color: var(--gold-light); font-weight:700; opacity:.9;
+  }
+  .eyebrow::before, .eyebrow::after{content:"✦"; margin:0 12px; color:var(--gold); opacity:.7;}
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: clamp(34px, 6vw, 58px);
+    margin: 14px 0 8px;
+    letter-spacing:-0.01em;
+    background: linear-gradient(180deg, #FFF7E0, var(--gold-light) 70%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .sub{color: rgba(246,241,228,0.72); font-size:16px; max-width:520px; margin:0 auto;}
+
+  .ribbon-divider{
+    display:flex; align-items:center; gap:14px; justify-content:center; margin:22px 0 0;
+    color: var(--gold); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+  }
+  .ribbon-divider .line{height:1px; width:70px; background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 26px;
+    margin-top: 38px;
+  }
+  @media (max-width: 860px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+    backdrop-filter: blur(6px);
+  }
+  .panel h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:20px;
+    margin:0 0 4px; color: var(--gold-light);
+    display:flex; align-items:center; gap:10px;
+  }
+  .panel h2 .num{
+    font-size:12px; width:22px; height:22px; border-radius:50%;
+    border:1px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-family:'Manrope',sans-serif; font-weight:700; color:var(--gold);
+  }
+  .panel p.hint{color:rgba(246,241,228,0.55); font-size:13.5px; margin:2px 0 18px;}
+
+  textarea, input[type=text], input[type=number]{
+    width:100%; background: rgba(6,40,33,0.55); border:1px solid var(--line);
+    color: var(--cream); border-radius:12px; padding:12px 14px; font-family:'Manrope',sans-serif;
+    font-size:14.5px; resize:vertical; outline:none;
+  }
+  textarea{min-height:150px; line-height:1.6;}
+  textarea:focus, input:focus{border-color: var(--gold); box-shadow:0 0 0 3px rgba(201,162,39,0.18);}
+
+  .row{display:flex; gap:10px; margin-top:12px;}
+  .row input{flex:1;}
+
+  button{
+    font-family:'Manrope',sans-serif; font-weight:700; cursor:pointer; border:none;
+    border-radius:12px; padding:12px 18px; font-size:14px; letter-spacing:.02em;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  button:focus-visible{outline:2px solid var(--gold-light); outline-offset:2px;}
+  button:active{transform: scale(0.97);}
+  .btn-gold{ background: linear-gradient(180deg, var(--gold-light), var(--gold)); color:#2b2005; }
+  .btn-gold:hover{box-shadow:0 6px 18px rgba(201,162,39,0.35);}
+  .btn-ghost{ background: transparent; color: var(--cream); border:1px solid var(--line); }
+  .btn-ghost:hover{ border-color: var(--gold); color:var(--gold-light); }
+  .btn-ruby{ background: linear-gradient(180deg, #A8384B, var(--ruby)); color:#fff0f0; }
+
+  .list{
+    margin-top:18px; max-height:230px; overflow-y:auto; display:flex; flex-direction:column; gap:8px;
+    padding-right:4px;
+  }
+  .list::-webkit-scrollbar{width:6px;}
+  .list::-webkit-scrollbar-thumb{background:var(--gold); border-radius:4px; opacity:.5;}
+  .item{
+    display:flex; align-items:center; justify-content:space-between;
+    background: rgba(246,241,228,0.04); border:1px solid var(--line);
+    border-radius:10px; padding:9px 12px; font-size:14px;
+  }
+  .item span.n{color:var(--gold-light); font-weight:700; margin-right:8px; font-size:12px;}
+  .item button{
+    background:none; border:none; color:rgba(246,241,228,0.45); font-size:16px; padding:2px 6px;
+  }
+  .item button:hover{color:var(--ruby);}
+
+  .count-badge{
+    display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--gold-light);
+    margin-top:14px; padding:6px 12px; border:1px dashed var(--gold); border-radius:999px;
+  }
+
+  /* --- Drum / Reel --- */
+  .stage{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 10px 0 6px;
+  }
+  .drum{
+    position:relative; width:100%; max-width:420px; height:150px;
+    border-radius:16px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    border:2px solid var(--gold);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.4), 0 0 0 6px rgba(201,162,39,0.08);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .drum::before, .drum::after{
+    content:""; position:absolute; left:0; right:0; height:34px; z-index:2; pointer-events:none;
+  }
+  .drum::before{ top:0; background:linear-gradient(180deg, var(--ink-deep), transparent); }
+  .drum::after{ bottom:0; background:linear-gradient(0deg, var(--ink-deep), transparent); }
+  .drum .name-display{
+    font-family:'Fraunces', serif; font-weight:700; font-size: clamp(22px, 4vw, 32px);
+    color: var(--gold-light); text-align:center; padding:0 16px;
+    text-shadow: 0 2px 12px rgba(201,162,39,0.35);
+  }
+  .drum .name-display.spinning{ filter: blur(0.4px); }
+  .drum .placeholder{ color:rgba(246,241,228,0.35); font-size:15px; font-family:'Manrope',sans-serif; font-weight:600;}
+
+  .controls{ display:flex; gap:12px; align-items:center; justify-content:center; margin-top:20px; flex-wrap:wrap;}
+  .qty{ display:flex; align-items:center; gap:8px; font-size:13.5px; color:rgba(246,241,228,0.7);}
+  .qty input{ width:64px; text-align:center; padding:8px; }
+  .toggle-line{ display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(246,241,228,0.6); margin-top:14px; justify-content:center;}
+
+  .winners{ margin-top:26px; }
+  .winners h3{
+    font-family:'Fraunces', serif; font-size:16px; color:var(--gold-light); margin:0 0 12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .winner-card{
+    display:flex; align-items:center; gap:14px; background: rgba(201,162,39,0.08);
+    border:1px solid rgba(201,162,39,0.4); border-radius:12px; padding:12px 16px; margin-bottom:10px;
+    animation: pop .4s ease;
+  }
+  .winner-card .medal{
+    width:34px; height:34px; border-radius:50%; background:linear-gradient(180deg,var(--gold-light),var(--gold));
+    display:flex; align-items:center; justify-content:center; font-weight:800; color:#2b2005; font-size:13px; flex-shrink:0;
+  }
+  .winner-card .wname{ font-family:'Fraunces', serif; font-weight:600; font-size:17px; color:var(--cream);}
+  .winner-card .wtime{ font-size:11.5px; color:rgba(246,241,228,0.45); margin-left:auto;}
+  @keyframes pop{ from{ opacity:0; transform: translateY(-6px) scale(0.97);} to{opacity:1; transform:none;} }
+
+  .empty-note{ color:rgba(246,241,228,0.4); font-size:13.5px; text-align:center; padding:14px 0;}
+
+  footer{ text-align:center; margin-top:44px; color:rgba(246,241,228,0.35); font-size:12.5px; }
+
+  canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:50; }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Peresmian WEE SOKU</div>
+    <h1>Undian Pemenang Hadiah</h1>
+    <p class="sub">Masukkan nama peserta, kocok undian, dan saksikan pemenang terpilih secara acak dan adil.</p>
+    <div class="ribbon-divider"><span class="line"></span>Semoga Beruntung<span class="line"></span></div>
+  </header>
+
+  <div class="grid">
+
+    <section class="panel">
+      <h2><span class="num">1</span> Daftar Peserta</h2>
+      <p class="hint">Tempel banyak nama sekaligus (satu nama per baris), atau tambah satu-satu di bawah.</p>
+      <textarea id="bulkInput" placeholder="Contoh:
+Budi Santoso
+Siti Aminah
+Andi Wijaya"></textarea>
+      <div class="row">
+        <button class="btn-gold" id="addBulkBtn">Tambahkan ke Daftar</button>
+      </div>
+
+      <div class="row">
+        <input type="text" id="singleInput" placeholder="Tambah satu nama...">
+        <button class="btn-ghost" id="addSingleBtn">Tambah</button>
+      </div>
+
+      <div class="list" id="participantList"></div>
+      <div class="count-badge" id="countBadge">0 peserta terdaftar</div>
+
+      <div class="row" style="margin-top:16px;">
+        <button class="btn-ghost" id="clearBtn" style="flex:1;">Kosongkan Daftar</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><span class="num">2</span> Kocok Undian</h2>
+      <p class="hint">Tekan tombol untuk mengocok dan menentukan pemenang secara acak.</p>
+
+      <div class="stage">
+        <div class="drum">
+          <div class="name-display" id="nameDisplay"><span class="placeholder">Menunggu peserta ditambahkan…</span></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="qty">
+          Jumlah pemenang tiap undi:
+          <input type="number" id="qtyInput" min="1" value="1">
+        </div>
+        <button class="btn-gold" id="drawBtn">Kocok &amp; Undi</button>
+        <button class="btn-ghost" id="resetWinnersBtn">Reset Pemenang</button>
+      </div>
+
+      <label class="toggle-line">
+        <input type="checkbox" id="removeAfterWin" checked style="width:auto;">
+        Keluarkan pemenang dari daftar setelah menang
+      </label>
+
+      <div class="winners">
+        <h3>🏆 Daftar Pemenang</h3>
+        <div id="winnersList"></div>
+        <div class="empty-note" id="emptyWinnersNote">Belum ada pemenang yang terpilih.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>Peresmian WEE SOKU — Sistem Undian Digital</footer>
+</div>
+
+<script>
+(function(){
+  let participants = [];
+  let winners = [];
+  let spinning = false;
+
+  const bulkInput = document.getElementById('bulkInput');
+  const singleInput = document.getElementById('singleInput');
+  const participantList = document.getElementById('participantList');
+  const countBadge = document.getElementById('countBadge');
+  const nameDisplay = document.getElementById('nameDisplay');
+  const winnersList = document.getElementById('winnersList');
+  const emptyWinnersNote = document.getElementById('emptyWinnersNote');
+  const drawBtn = document.getElementById('drawBtn');
+  const qtyInput = document.getElementById('qtyInput');
+
+  function renderParticipants(){
+    participantList.innerHTML = '';
+    participants.forEach((name, idx) => {
+      const item = document.createElement('div');
+      item.className = 'item';
+      item.innerHTML = `<div><span class="n">${String(idx+1).padStart(2,'0')}</span>${escapeHtml(name)}</div>`;
+      const rm = document.createElement('button');
+      rm.textContent = '✕';
+      rm.title = 'Hapus';
+      rm.addEventListener('click', () => {
+        participants.splice(idx,1);
+        renderParticipants();
+      });
+      item.appendChild(rm);
+      participantList.appendChild(item);
+    });
+    countBadge.textContent = participants.length + ' peserta terdaftar';
+    if(participants.length === 0 && !spinning){
+      nameDisplay.innerHTML = '<span class="placeholder">Menunggu peserta ditambahkan…</span>';
+    } else if (!spinning) {
+      nameDisplay.innerHTML = '<span class="placeholder">Siap untuk diundi</span>';
+    }
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function addNames(rawText){
+    const names = rawText.split('\n').map(s => s.trim()).filter(Boolean);
+    participants.push(...names);
+    renderParticipants();
+  }
+
+  document.getElementById('addBulkBtn').addEventListener('click', () => {
+    if(bulkInput.value.trim()){
+      addNames(bulkInput.value);
+      bulkInput.value = '';
+    }
+  });
+
+  document.getElementById('addSingleBtn').addEventListener('click', addSingleName);
+  singleInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') addSingleName(); });
+  function addSingleName(){
+    const v = singleInput.value.trim();
+    if(v){ participants.push(v); singleInput.value=''; renderParticipants(); }
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if(participants.length && confirm('Kosongkan seluruh daftar peserta?')){
+      participants = [];
+      renderParticipants();
+    }
+  });
+
+  document.getElementById('resetWinnersBtn').addEventListener('click', () => {
+    if(winners.length && confirm('Hapus seluruh riwayat pemenang?')){
+      winners = [];
+      renderWinners();
+    }
+  });
+
+  function renderWinners(){
+    winnersList.innerHTML = '';
+    emptyWinnersNote.style.display = winners.length ? 'none' : 'block';
+    winners.slice().reverse().forEach((w, i) => {
+      const card = document.createElement('div');
+      card.className = 'winner-card';
+      card.innerHTML = `<div class="medal">${String(winners.length - i).padStart(2,'0')}</div>
+        <div class="wname">${escapeHtml(w.name)}</div>
+        <div class="wtime">${w.time}</div>`;
+      winnersList.appendChild(card);
+    });
+  }
+
+  drawBtn.addEventListener('click', () => {
+    if(spinning) return;
+    const removeAfterWin = document.getElementById('removeAfterWin').checked;
+    let qty = parseInt(qtyInput.value, 10) || 1;
+    if(qty < 1) qty = 1;
+
+    if(participants.length === 0){
+      alert('Tambahkan peserta terlebih dahulu sebelum mengundi.');
+      return;
+    }
+    if(qty > participants.length) qty = participants.length;
+
+    spinning = true;
+    drawBtn.disabled = true;
+    drawBtn.style.opacity = '0.6';
+
+    runDraw(qty, removeAfterWin);
+  });
+
+  function runDraw(qty, removeAfterWin){
+    const pool = participants.slice();
+    const chosen = [];
+    for(let i=0; i<qty; i++){
+      const idx = Math.floor(Math.random() * pool.length);
+      chosen.push(pool.splice(idx,1)[0]);
+    }
+
+    let step = 0;
+    const totalSteps = 26;
+    nameDisplay.classList.add('spinning');
+    const interval = setInterval(() => {
+      const randomName = participants[Math.floor(Math.random()*participants.length)];
+      nameDisplay.textContent = randomName;
+      step++;
+      if(step >= totalSteps){
+        clearInterval(interval);
+        finishDraw(chosen, removeAfterWin);
+      }
+    }, 90 + step * 2);
+  }
+
+  function finishDraw(chosen, removeAfterWin){
+    nameDisplay.classList.remove('spinning');
+    nameDisplay.textContent = chosen.join(', ');
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+    chosen.forEach(name => winners.push({name, time: timeStr}));
+    renderWinners();
+    fireConfetti();
+
+    if(removeAfterWin){
+      chosen.forEach(name => {
+        const idx = participants.indexOf(name);
+        if(idx > -1) participants.splice(idx,1);
+      });
+      renderParticipants();
+    }
+
+    spinning = false;
+    drawBtn.disabled = false;
+    drawBtn.style.opacity = '1';
+  }
+
+  renderParticipants();
+  renderWinners();
+
+  /* ---- Confetti ---- */
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const colors = ['#C9A227', '#E8CE7A', '#8A2A3B', '#F6F1E4', '#0B3B2E'];
+  let particles = [];
+  let animId = null;
+
+  function fireConfetti(){
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced) return;
+    for(let i=0; i<120; i++){
+      particles.push({
+        x: canvas.width/2 + (Math.random()-0.5)*200,
+        y: canvas.height*0.35,
+        vx: (Math.random()-0.5)*10,
+        vy: Math.random()*-10 - 4,
+        g: 0.28 + Math.random()*0.12,
+        size: 4 + Math.random()*5,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        rot: Math.random()*Math.PI,
+        vr: (Math.random()-0.5)*0.3,
+        life: 0
+      });
+    }
+    if(!animId) animateConfetti();
+  }
+
+  function animateConfetti(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      p.vy += p.g * 0.3;
+      p.x += p.vx;
+      p.y += p.vy * 0.6;
+      p.rot += p.vr;
+      p.life++;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+      ctx.restore();
+    });
+    particles = particles.filter(p => p.y < canvas.height + 40 && p.life < 260);
+    if(particles.length > 0){
+      animId = requestAnimationFrame(animateConfetti);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      animId = null;
+    }
+  }
+})();
+</script>
+</body>
+</html>
